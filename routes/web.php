@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,15 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
 
-    $categories = [
-        1 => '商品のお届けについて',
-        2 => '商品の交換について',
-        3 => '商品トラブル',
-        4 => 'ショップへのお問い合わせ',
-        5 => 'その他',
-    ];
+Route::get('/', [ContactController::class, 'index']);
 
-    return view('contact.index', compact('categories'));
-});
+Route::post('/confirm', [ContactController::class, 'confirm']);
+
+Route::post('/contacts', [ContactController::class, 'store']);
