@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relatioms\BelongsToMany;
 
 class Contact extends Model
 {
@@ -20,4 +21,12 @@ class Contact extends Model
         'category_id',
         'detail',
     ];
+
+    public function tags()
+    {
+        return $this->belongsToMany(
+            Tag::class,
+            'contact_tags'
+        );
+    }
 }

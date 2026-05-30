@@ -80,7 +80,7 @@
                         <span class="text-sm font-medium text-white">お問い合わせの種類</span>
                     </div>
                     <div class="col-span-2 bg-white px-6 py-4 flex items-center">
-                        <span class="text-[#6b5744]">{{ $validated['category_id'] }}</span>
+                        <span class="text-[#6b5744]">{{ $category->content }}</span>
                     </div>
                 </div>
 

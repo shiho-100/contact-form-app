@@ -35,27 +35,71 @@ class StoreContactRequest extends FormRequest
 
             'gender' => [
                 'required',
+                'in:1,2,3',
             ],
 
             'email' => [
                 'required',
+                'email',
+                'max:255',
             ],
 
             'tel' => [
                 'required',
+                'regex:/^[0-9]{10,11}$/',
             ],
 
             'address' => [
-                'required'
+                'required',
+                'string',
+                'max:255',
+            ],
+
+            'building' => [
+                'nullable',
+                'string',
+                'max:255',
             ],
 
             'category_id' => [
                 'required',
+                'exists:categories,id',
+            ],
+
+            'tag_ids' => [
+                'nullable',
+                'array',
             ],
 
             'detail' => [
                 'required',
+                'string',
+                'max:120',
             ],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'first_name.required' => '姓を入力してください',
+            'last_name.required' => '名を入力してください',
+            
+            'gender.required' => '性別を選択してください',
+
+            'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メールアドレスはメール形式で入力してください',
+
+            'tel.required' => '電話番号を入力してください',
+            'tel.regex' => '電話番号はハイフンなしの10～11桁で入力してください',
+
+            'address.required' => '住所を入力してください',
+
+            'category_id.required' => 'お問い合わせの種類を選択してください',
+
+            'detail.required' => 'お問い合わせ内容を入力してください',
+            'detail.max' => 'お問い合わせ内容は120文字で入力してください',
+
         ];
     }
 }
