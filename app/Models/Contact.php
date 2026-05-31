@@ -29,4 +29,9 @@ class Contact extends Model
             'contact_tags'
         );
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
